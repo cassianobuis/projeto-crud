@@ -1,17 +1,13 @@
 package com.example.projeto.crud.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.beans.factory.annotation.Autowired;x 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.example.projeto.crud.DTO.ReservaDTO;
 import com.example.projeto.crud.Entity.Ambiente;
 import com.example.projeto.crud.Entity.Reserva;
 import com.example.projeto.crud.Repository.AmbienteRepository;
 import com.example.projeto.crud.Repository.ReservaRepository;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -55,6 +51,8 @@ public class ReservaService extends BaseService<Reserva, ReservaDTO> {
         return super.create(dto);
     }
 
+
+
     @Transactional
     public ReservaDTO update(Long id, ReservaDTO dto) {
         Reserva reservaExistente = reservaRepository.findById(id)
@@ -66,6 +64,10 @@ public class ReservaService extends BaseService<Reserva, ReservaDTO> {
 
         return super.update(id, dto);
     }
+
+
+
+
 
     public List<ReservaDTO> listaPorData(String dataInicio, String dataFim) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -82,6 +84,10 @@ public class ReservaService extends BaseService<Reserva, ReservaDTO> {
         return dtos;
     }
 
+
+
+
+
     public List<ReservaDTO> listaPorAmbiente(Long ambienteId) {
         List<Reserva> reservas = reservaRepository.findByAmbiente(ambienteId);
 
@@ -93,8 +99,17 @@ public class ReservaService extends BaseService<Reserva, ReservaDTO> {
         return dtos;
     }
 
-    public List<Reserva> findReservasPorNomeUsuario(String nomeUsuario) {
-        return reservaRepository.findReservasPorNomeUsuario(nomeUsuario);
+
+
+    public List<ReservaDTO> listarPorUsuario(String nome) {
+        List<Reserva> reservas = reservaRepository.findByUsuario(nome);
+
+        List<ReservaDTO> dtos = new ArrayList<>();
+
+        for (Reserva reserva : reservas){
+            dtos.add(super.toDto(reserva));
+        }
+        return dtos;
     }
 
 }

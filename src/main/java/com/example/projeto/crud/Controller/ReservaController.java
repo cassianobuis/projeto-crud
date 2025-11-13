@@ -39,14 +39,11 @@ public class ReservaController extends BaseController<ReservaDTO> {
     }
 
     @GetMapping("/porUsuario/{nomeUsuario}")
-    public List<ReservaDTO> getReservasPorUsuario(@PathVariable String nomeUsuario) {
-        List<Reserva> reservas = service.findReservasPorNomeUsuario(nomeUsuario);
-        List<ReservaDTO> reservaDTOs = new ArrayList<>();
+    public List<ReservaDTO> ReservaPorUsuario(
+        @PathVariable ("usuario") String nomeUsuario) {
 
-        for (Reserva reserva : reservas) {
-            reservaDTOs.add(service.toDto(reserva));
-        }
-        return reservaDTOs;
+
+        return service.listarPorUsuario(nomeUsuario);
     }
 
 }
