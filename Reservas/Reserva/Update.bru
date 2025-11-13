@@ -5,9 +5,22 @@ meta {
 }
 
 put {
-  url: http://localhost:8080/reservas
-  body: none
+  url: http://localhost:8080/reservas/17
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "id": 17,
+    "motivo": "Reunião com de desempenho",
+    "nome": "Kamila de Souza",
+    "dataInicio": "05/11/2025 09:30",
+    "dataFim": "05/11/2025 11:00",
+     "ambiente": {
+    "id": 6
+  }
+  }
 }
 
 settings {

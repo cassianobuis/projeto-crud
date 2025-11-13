@@ -1,5 +1,7 @@
 package com.example.projeto.crud.Entity;
 
+import java.time.chrono.ChronoLocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -16,7 +18,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 public class Ambiente extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nome;
 
     @Column(nullable = false)
@@ -28,4 +30,5 @@ public class Ambiente extends BaseEntity {
     @Column(nullable = false)
     private int capacidade = 1;
 
+    
 }

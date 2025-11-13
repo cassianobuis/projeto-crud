@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.service.annotation.PatchExchange;
 
 import com.example.projeto.crud.Service.BaseService;
 
@@ -31,7 +32,7 @@ public abstract class BaseController<D> {
         return service.read(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping ("/{id}")
     public D update(@PathVariable Long id, @RequestBody @Valid D dto) {
         return service.update(id, dto);
     }

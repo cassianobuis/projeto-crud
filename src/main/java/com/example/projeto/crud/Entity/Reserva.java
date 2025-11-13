@@ -36,4 +36,9 @@ public class Reserva extends BaseEntity {
     @ManyToOne
     private Ambiente ambiente;
 
+    public static LocalDateTime dataInicio() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'dataInicio'");
+    }
+
 }

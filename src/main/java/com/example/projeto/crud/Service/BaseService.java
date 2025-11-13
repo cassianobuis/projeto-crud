@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import com.example.projeto.crud.Entity.BaseEntity;
+import com.example.projeto.crud.Entity.Reserva;
 import com.example.projeto.crud.Repository.BaseRepository;
 
 import jakarta.transaction.Transactional;
@@ -16,6 +17,7 @@ public abstract class BaseService<E extends BaseEntity, D> {
     private final Class<E> entityClass;
     private final Class<D> dtoClass;
     private final BaseRepository<E, Long> repository;
+    
 
     @SuppressWarnings("unchecked")
     protected BaseService(BaseRepository<E, Long> repository) {
@@ -29,9 +31,9 @@ public abstract class BaseService<E extends BaseEntity, D> {
 
 
     public D toDto(E e) {
-        try {
-            D dto = dtoClass.getDeclaredConstructor().newInstance();
-            BeanUtils.copyProperties(e, dto);
+            try {
+                D dto = dtoClass.getDeclaredConstructor().newInstance();
+                BeanUtils.copyProperties(e, dto);
 
             return dto;
         } catch (Exception ex) {

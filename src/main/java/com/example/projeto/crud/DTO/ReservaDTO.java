@@ -6,6 +6,7 @@ import com.example.projeto.crud.Entity.Ambiente;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -37,5 +38,10 @@ public class ReservaDTO {
     @NotNull(message = "O ambiente não pode ser nulo")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Ambiente ambiente;
+
+    @AssertTrue(message = "A data de início deve ser anterior à data de fim")
+    public boolean periodoValido() {
+        return dataInicio.isBefore(dataFim);
+    }
 
 }
